@@ -70,3 +70,14 @@ def get_entry(entryid):
     data=Diary()
     info=data.single_entry(entryid, user)
     return info
+
+@routes.route('/API/v1/entries/<int:entryid>', methods=['PUT'])
+@jwt_required
+def update_entry(entryid):
+    """view to update an entry"""
+    active_user = get_jwt_identity()
+    user = active_user["user_id"]
+    updating_data=request.get_json()
+    data=Diary()
+    info=data.update_entry(entryid,user,updating_data["title"],updating_data["body"])
+    return info    
