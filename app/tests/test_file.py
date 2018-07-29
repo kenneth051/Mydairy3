@@ -34,6 +34,7 @@ class FlaskTesting(unittest.TestCase):
         password="1234567890",gender = "female")),content_type="application/json") 
         self.assertEqual(response.status_code,409) 
         self.assertIn(b"username is  already used, create a unique one", response.data)
+
     def test_login(self):  
         tester = APP.test_client(self)
         res = tester.post('/API/v1/auth/users/login',data = json.dumps(dict(username = "joy",password = "12345678")),
