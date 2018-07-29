@@ -34,11 +34,12 @@ class Diary(Database):
         except:
             response = jsonify({"message":"Entry cannot be created, contact ADMIN"})
             response.status_code =400
-            return response   
-    def all_entries(self):
+            return response
+   
+    def all_entries(self,user_id1):
         """method to get all entries"""
         cur=self.con.cursor()
-        cur.execute("SELECT * FROM  Entries",);
+        cur.execute("SELECT * FROM  Entries WHERE user_id = %s",(user_id1,));
         affected=cur.rowcount
         if affected >0: 
             result=cur.fetchall()
@@ -55,10 +56,10 @@ class Diary(Database):
                 lst.append(data)
             return jsonify({"result": lst})
 
-    def single_entry(self, entryid):
+    def single_entry(self, entryid ,user_id1):
         """method to get single entry"""
         cur=self.con.cursor()
-        cur.execute("SELECT * FROM Entries where id = %s ",(entryid,));
+        cur.execute("SELECT * FROM Entries where id = %s and user_id = %s",(entryid, user_id1));
         affected=cur.rowcount
         result=cur.fetchall()
         if affected >0: 
@@ -75,23 +76,6 @@ class Diary(Database):
                 lst.append(data)
             return jsonify({"result": lst})
         else:
-            response = jsonify({"message":"invalid ID"})
-            response.status_code = 422
+            response = jsonify({"message":"The URL is invalid ,wrong ID given"})
+            response.status_code = 404
             return response 
-
-    @classmethod
-    def updating_entry(cls, entryid, data):
-        """method to update entries"""
-        result = "invalid Id, cannot update"
-        response = jsonify({"data": result})
-        response.status_code = 422
-        now = datetime.now()
-        new_date = now.strftime("%c")
-        for info in Diary.entries:
-            if info['entry_id'] == entryid:
-                info["title"] = data["title"]
-                info["body"] = data["body"]
-                info["updated"] = new_date
-                response = jsonify({"data": info, "message": "update successful"})
-                response.status_code = 200
-        return response
