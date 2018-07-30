@@ -1,5 +1,34 @@
 # Mydairy3
 challenge3
+FEATURES OF MYDIARY
+
+		-Creating an account
+
+		-logging into the account
+
+		-Entering content(Writitng)
+
+		-Viewing all entries
+
+		-Viewing a specific entry
+
+		-Updating an entry
+MY DIARY'S ENDPOINTS
+
+		METHOD             ACTIVITY                     ENDPOINT
+		-POST             registering a user            /API/v1/auth/signup
+		
+		-POST             logging in                    /API/v1/auth/users/login
+
+		-GET             fetching all entries           /API/v1/entries
+
+		-POST            Creating an entry              /API/v1/entries
+
+		-GET             Fething a specific entry       /API/v1/entries/<int:entryid>
+
+		-PUT             Updating a specific entry      /API/v1/entries/<int:entryid>
+		
+GETTING STARTED WITH MY DIARY
 1- Clone the repository to your computer
 
 -git clone https://github.com/kenneth051/Mydairy3.git 
@@ -20,7 +49,24 @@ challenge3
 
 		    -pip install -r requirements.txt
 
-4- If you have postgres installed in your computer,  create a database diary
+4- Install postgres SQL on your computer.In the sql shell
+                    -*create databases*
+		         -create database test_db;
+			 -create database diary;
 
-5-Run the application when you are in it's parent directory
--python run.py
+4-Run the application when you are in it's parent directory
+
+		    -python run.py
+
+**Testing**
+
+To run tests
+#in root directory
+
+            -pytest
+
+            -pytest --cov  (pytest with coverage)
+
+
+ The endpoints have been developed Using Python OOP based together with Flask framework implementing non persistent data using data structures for storage.
+ 
