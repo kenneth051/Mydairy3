@@ -16,7 +16,7 @@ FEATURES OF MYDIARY
 MY DIARY'S ENDPOINTS
 
 		METHOD             ACTIVITY                     ENDPOINT
-		-POST             registering a user            /API/v1/auth/signup
+		-POST             registering a user            /API/v1/auth/users/signup
 		
 		-POST             logging in                    /API/v1/auth/users/login
 

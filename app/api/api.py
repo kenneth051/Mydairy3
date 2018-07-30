@@ -8,7 +8,7 @@ from app.validation2 import Validate2
 
 routes= Blueprint('routes', __name__)
 
-@routes.route('/API/v1/auth/signup', methods=['POST'])
+@routes.route('/API/v1/auth/users/signup', methods=['POST'])
 def register():
     """ view to register a user """
     try:
