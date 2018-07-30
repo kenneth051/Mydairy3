@@ -50,6 +50,7 @@ GETTING STARTED WITH MY DIARY
 		    -pip install -r requirements.txt
 
 4- Install postgres SQL on your computer.In the sql shell
+
                     -*create databases*
 		         -create database test_db;
 			 -create database diary;
@@ -57,7 +58,24 @@ GETTING STARTED WITH MY DIARY
 4-Run the application when you are in it's parent directory
 
 		    -python run.py
+ 5 - When creating a user
 
+							{
+							"firstname":"dumba",
+							"lastname":"kenneth",
+							"username":"kenneth051",
+							"password":"123456",
+							"gender":"male"
+						}
+
+6 - when creating an entry    
+
+
+                         {"title":"This is it",
+						   "body":"WHY u gotta go"
+						 }
+
+						 
 **Testing**
 
 To run tests
