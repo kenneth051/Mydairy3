@@ -1,5 +1,6 @@
 # PROJECT TITLE
-Mydairy3
+
+**Mydairy3**
 
 Is a Diary website where users register, login and then start noting down their daily activities, personal feelings that are saved in a database.
 
@@ -77,5 +78,6 @@ when creating and updating an entry
 Dumba Kenneth					 
 						 
 **Acknowledgments**
+
 Desire to make a difference in allowing people access their diary on an device at any time
  
