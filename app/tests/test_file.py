@@ -21,7 +21,7 @@ class FlaskTesting(unittest.TestCase):
 
     def test_create_user(self):
         tester=APP.test_client(self)
-        response=tester.post('/API/v1/auth/signup',
+        response=tester.post('/API/v1/auth/user/signup',
          data=json.dumps(dict(firstname = "joy",lastname = "williams",username = "williams",
         password="1234567890",gender = "female")),content_type="application/json") 
         self.assertEqual(response.status_code,201) 
@@ -29,11 +29,43 @@ class FlaskTesting(unittest.TestCase):
 
     def test_creating_user_with_duplicate_username(self):
         tester=APP.test_client(self)
-        response=tester.post('/API/v1/auth/signup',
+        response=tester.post('/API/v1/auth/user/signup',
          data=json.dumps(dict(firstname = "joy",lastname = "williams",username = "joy",
         password="1234567890",gender = "female")),content_type="application/json") 
         self.assertEqual(response.status_code,409) 
         self.assertIn(b"username is  already used, create a unique one", response.data)
+
+    def test_creating_username_validation(self):
+        tester=APP.test_client(self)
+        response=tester.post('/API/v1/auth/user/signup',
+         data=json.dumps(dict(firstname = "joy",lastname = "williams",username = "***",
+        password="1234567890",gender = "female")),content_type="application/json") 
+        self.assertEqual(response.status_code,400) 
+        self.assertIn(b"Invalid username field data,user alphanumeric", response.data)
+
+    def test_creating_user_data_validation(self):
+        tester=APP.test_client(self)
+        response=tester.post('/API/v1/auth/user/signup',
+         data=json.dumps(dict(firstname = "****",lastname = "   ",username = "andela",
+        password="1234567890",gender = "female")),content_type="application/json") 
+        self.assertEqual(response.status_code,400) 
+        self.assertIn(b"Invalid firstname or lastname, use alphabets", response.data)
+
+    def test_creating_user_password_validation(self):
+        tester=APP.test_client(self)
+        response=tester.post('/API/v1/auth/user/signup',
+         data=json.dumps(dict(firstname = "uuuuu",lastname = "yyyyyyy",username = "andela",
+        password="    ",gender = "female")),content_type="application/json") 
+        self.assertEqual(response.status_code,400) 
+        self.assertIn(b"invalid password data", response.data)
+
+    def test_creating_password_length(self):
+        tester=APP.test_client(self)
+        response=tester.post('/API/v1/auth/user/signup',
+         data=json.dumps(dict(firstname = "uuuuu",lastname = "yyyyyyy",username = "andela",
+        password="uuuuu",gender = "female")),content_type="application/json") 
+        self.assertEqual(response.status_code,400) 
+        self.assertIn(b"Password should be 8 or more characters long", response.data)              
 
     def test_login(self):  
         tester = APP.test_client(self)
@@ -86,7 +118,16 @@ class FlaskTesting(unittest.TestCase):
         response = tester.get('/API/v1/entries/11111',headers=self.access_header,
                               content_type="application/json")
         self.assertEqual(response.status_code, 404)
-        self.assertIn(b"The URL is invalid ,wrong ID given", response.data)           
+        self.assertIn(b"The URL is invalid ,wrong ID given", response.data) 
+
+    def test_to_update_entry(self):
+        """test to get a single entry content"""
+        tester = APP.test_client(self)
+        response = tester.put('/API/v1/entries/1',data=json.dumps(
+            dict(title="war",
+                body="We will be fine",user_id=1)),headers=self.access_header,
+                              content_type="application/json")
+        self.assertEqual(response.status_code, 200)              
    
     def tearDown(self):
             users_table=("""DROP TABLE IF EXISTS users;""")
@@ -97,5 +138,6 @@ class FlaskTesting(unittest.TestCase):
             con.commit()
             cur.execute(entries_table)
             con.commit()
+
 if __name__ == '__main__':
     unittest.main()
