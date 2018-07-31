@@ -78,7 +78,8 @@ class Diary(Database):
         else:
             response = jsonify({"message":"The URL is invalid ,wrong ID given"})
             response.status_code = 404
-            return response 
+            return response
+
     def update_entry(self, entryid ,user_id1,title1,body1):
         """method to update an entry"""
         response = ""
@@ -94,7 +95,7 @@ class Diary(Database):
                 if row[4] == today:
                     msg=Validate.validate_updating_duplicates(cur,entryid,user_id1,title1,body1)
                     if msg is not True:
-                        cur.execute("UPDATE entries SET title = %s, body = %s, updated = %s WHERE user_id = %s", (title1, body1, new_date, user_id1))
+                        cur.execute("UPDATE entries SET title = %s, body = %s, updated = %s WHERE id = %s", (title1, body1, new_date, entryid))
                         self.con.commit()
                         response = jsonify({"message": "update successful"})
                         response.status_code = 200

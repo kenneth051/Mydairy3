@@ -1,5 +1,6 @@
 """validation class with regular expressions"""
 import re
+from app.validation3 import validate_userfields, validate_username
 
 
 class Validate2():
@@ -12,8 +13,29 @@ class Validate2():
         """method to validate my input """
         result = ""
         if(not re.search("[a-zA-Z0-9]", self.title) or not
-           re.search("^(\s|\S)*(\S)+(\s|\S)*$", self.body)):
-            result = "wrong data"
+           re.search("^{\\s|\\S}*{\\S}+{\\s|\\S}*$", self.body)):
+            result = False
         else:
             result = True
         return result
+    @classmethod
+    def validate_user(cls, username,firstname,lastname,password,gender):
+        response= ""
+        password_length= len(password)
+        info=validate_username(username)
+        firstname2 =validate_userfields(firstname)
+        lastname2 =validate_userfields(lastname)
+        gender=str(gender)
+        if info is False:
+            response = "Invalid username field data,user alphanumeric"    
+        elif firstname2 is False or lastname2 is False:
+            response ="Invalid firstname or lastname, use alphabets"
+        elif gender not in ("male","female"):
+            response = "Invalid gender, should be male or female"    
+        elif(not re.search("^{\\s|\\S}*{\\S}+{\\s|\\S}*$", password)):
+            response ="invalid password data"   
+        elif password_length <= 8:
+            response ="Password should be 8 or more characters long"
+        else:
+            response =  True
+        return response        
