@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kenneth051/Mydairy3.svg?branch=develop)](https://travis-ci.org/kenneth051/Mydairy3)
+
 # PROJECT TITLE
 
 **Mydairy3**
