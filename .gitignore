@@ -3,3 +3,4 @@ __pycache__
 bootcamp10
 challenge3
 .vscode
+.coverage

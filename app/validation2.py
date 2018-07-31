@@ -26,6 +26,7 @@ class Validate2():
         firstname2 =validate_userfields(firstname)
         lastname2 =validate_userfields(lastname)
         gender=str(gender)
+        gender=gender.lower()
         if info is False:
             response = "Invalid username field data,user alphanumeric"    
         elif firstname2 is False or lastname2 is False:
