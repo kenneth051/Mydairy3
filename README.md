@@ -1,18 +1,48 @@
-# Mydairy3
-challenge3
-FEATURES OF MYDIARY
+# PROJECT TITLE
+Mydairy3
 
-		-Creating an account
+Is a Diary website where users register, login and then start noting down their daily activities, personal feelings that are saved in a database.
 
-		-logging into the account
+# GETTING STARTED
 
-		-Entering content(Writitng)
+These instructions will enable you to run the project
 
-		-Viewing all entries
+**Prerequisites**
 
-		-Viewing a specific entry
+Below are the things you need to get the project up and running.
 
-		-Updating an entry
+git : To update and clone the repository
+
+python3: Language used to develop the api
+
+pip: A python package used to install modules specified in the requirements text file.
+
+
+**Clone the repository to your computer**
+
+    -git clone https://github.com/kenneth051/Mydairy3.git 
+
+-Install the dependencies
+
+    -pip install -r requirements.txt
+    
+-Install postgres SQL on your computer.In the sql shell
+
+    -CREATE DATABASE test_db;
+    -CREATE DATABASE diary;    
+    
+-Run the application when you are in it's parent directory
+
+		    -python run.py    
+ **Testing**
+
+To run tests
+*in project's root directory*
+
+    pytest
+
+    pytest --cov  (pytest with coverage)
+
 MY DIARY'S ENDPOINTS
 
 		METHOD             ACTIVITY                     ENDPOINT
@@ -27,64 +57,25 @@ MY DIARY'S ENDPOINTS
 		-GET             Fething a specific entry       /API/v1/entries/<int:entryid>
 
 		-PUT             Updating a specific entry      /API/v1/entries/<int:entryid>
-		
-GETTING STARTED WITH MY DIARY
-1- Clone the repository to your computer
 
--git clone https://github.com/kenneth051/Mydairy3.git 
- 
- 2-Install a virtual enviroment
- 
-			-pip install virtaulenv
-			-in the projects root directory, create a virtual enviroment
-			-virtualenv "Name of virtaulenv here without the qoutes"
-			-activate the virtual env, in your project's root directory
+  When creating a user
 
-		-on windows
-			"virtual_env_folder_name_here"\Scripts\activate
-        -on a mac
-            source bin/activate
-
-3-Install the dependencies in your virtual enviroment
-
-		    -pip install -r requirements.txt
-
-4- Install postgres SQL on your computer.In the sql shell
-
-                    -*create databases*
-		         -create database test_db;
-			 -create database diary;
-
-4-Run the application when you are in it's parent directory
-
-		    -python run.py
- 5 - When creating a user
-
-							{
-							"firstname":"dumba",
-							"lastname":"kenneth",
-							"username":"kenneth051",
-							"password":"123456",
-							"gender":"male"
+			     {
+				"firstname":"dumba",
+				"lastname":"kenneth",
+				"username":"kenneth051",
+				"password":"123456",
+				"gender":"male"
 						}
 
-6 - when creating an entry    
+when creating and updating an entry 
 
-
-                         {"title":"This is it",
-						   "body":"WHY u gotta go"
+                         { "title":"This is it",
+		          "body":"WHY u gotta go"
 						 }
-
+**Authors**
+Dumba Kenneth					 
 						 
-**Testing**
-
-To run tests
-#in root directory
-
-            -pytest
-
-            -pytest --cov  (pytest with coverage)
-
-
- The endpoints have been developed Using Python OOP based together with Flask framework implementing non persistent data using data structures for storage.
+**Acknowledgments**
+Desire to make a difference in allowing people access their diary on an device at any time
  
