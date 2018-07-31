@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/kenneth051/Mydairy3.svg?branch=develop)](https://travis-ci.org/kenneth051/Mydairy3)
+
+[![Coverage Status](https://coveralls.io/repos/github/kenneth051/Mydairy3/badge.svg?branch=develop)](https://coveralls.io/github/kenneth051/Mydairy3?branch=develop)
+
 # PROJECT TITLE
 
 **Mydairy3**
