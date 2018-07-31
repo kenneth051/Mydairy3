@@ -5,9 +5,26 @@ from flask_jwt_extended import (create_access_token, get_jwt_identity)
 from app.api.api import APP
 from app.database import Database
 
-
 class TestBase(unittest.TestCase):
     """class to test our api"""
+    create_user=json.dumps(dict(firstname = "joy",lastname = "williams",username = "williams",
+        password="1234567890",gender = "female"))
+    duplicate_user=json.dumps(dict(firstname = "joy",lastname = "williams",username = "joy",
+        password="1234567890",gender = "female"))
+    invaliduser=json.dumps(dict(firstname = "joy",lastname = "williams",username = "***",
+        password="1234567890",gender = "female"))
+    invaliduser1=json.dumps(dict(firstname = "****",lastname = "   ",username = "andela",
+        password="1234567890",gender = "female"))
+    invalidpassword=json.dumps(dict(firstname = "uuuuu",lastname = "yyyyyyy",username = "andela",
+        password="    ",gender = "female"))
+    passwordlength=json.dumps(dict(firstname = "uuuuu",lastname = "yyyyyyy",username = "andela",
+        password="uuuuu",gender = "female"))
+    logindata= json.dumps(dict(username = "joy",password = "12345678"))
+    login_validation = json.dumps(dict(username = "******",password = "12345678"))
+    create_entry=json.dumps(dict(title="kampala",body="this is my body",user_id=1))
+    duplicate_entry=json.dumps(dict(title="Testing",body="testing data",user_id=1))
+    update_entry=data=json.dumps(dict(title="war",body="We will be fine",user_id=1))
+    duplicate_update=data=json.dumps(dict(title="Testing",body="We will be fine",user_id=1))        
     def setUp(self):
         """Define test variables and initialize app."""
         APP.config['TESTING'] = True
