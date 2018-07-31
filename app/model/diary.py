@@ -101,7 +101,7 @@ class Diary(Database):
                         response.status_code = 200
                     else:
                         response = jsonify({"message": "You are sending data you have used before, cannot update, change title or body "})
-                        response.status_code = 401
+                        response.status_code = 409
                 else:
                     response = jsonify({"message": "You can only update an entry you have created the same day"})
                     response.status_code = 409    
