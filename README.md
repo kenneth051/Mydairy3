@@ -84,5 +84,5 @@ Dumba Kenneth
 						 
 **Acknowledgments**
 
-Desire to make a difference in allowing people access their diary on an device at any time
+Desire to make a difference in allowing people access a diary on an device at any time
  
