@@ -39,4 +39,15 @@ class Validate2():
             response ="Password should be 8 or more characters long"
         else:
             response =  True
-        return response        
+        return response
+    @classmethod    
+    def validate_login(cls,username,password):
+        reponse =""
+        info=validate_username(username)
+        if info is False:
+            response ="Invalid username field data,user alphanumeric"
+        elif(not re.search("^{\\s|\\S}*{\\S}+{\\s|\\S}*$", password)):
+            response ="invalid password data"
+        else:
+            response =True    
+        return response           

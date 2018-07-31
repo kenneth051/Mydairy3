@@ -33,9 +33,15 @@ def login():
     """view for logging in"""
     try:
         data = request.get_json()
-        obj = UserData()
-        info = obj.login(data["username"], data["password"])
-        return info
+        info =Validate2.validate_login(data["username"],data["password"])
+        if info is True:
+            obj = UserData()
+            info = obj.login(data["username"], data["password"])
+            return info
+        else:
+            response = jsonify({"message": "Invalid username data or empty password field"})
+            response.status_code = 400
+            return response   
     except:
         return jsonify({"message":"Check data Fields"})    
 
