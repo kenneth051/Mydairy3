@@ -21,20 +21,25 @@ pip: A python package used to install modules specified in the requirements text
 
 **Clone the repository to your computer**
 
-    -git clone https://github.com/kenneth051/Mydairy3.git 
+     git clone https://github.com/kenneth051/Mydairy3.git 
 
--Install the dependencies
+-  Install the dependencies
 
-    -pip install -r requirements.txt
     
--Install postgres SQL on your computer.In the sql shell
-
-    -CREATE DATABASE test_db;
-    -CREATE DATABASE diary;    
+         pip install -r requirements.txt
     
--Run the application when you are in it's parent directory
+    
+    
+-  Install postgres SQL on your computer.In the sql shell
 
-		    -python run.py    
+       CREATE DATABASE test_db;
+    
+       CREATE DATABASE diary;    
+    
+-  Run the application when you are in it's parent directory
+
+       python run.py
+       
  **Testing**
 
 To run tests
@@ -44,7 +49,7 @@ To run tests
 
     pytest --cov  (pytest with coverage)
 
-MY DIARY'S ENDPOINTS
+**MY DIARY'S ENDPOINTS**
 
 		METHOD             ACTIVITY                     ENDPOINT
 		-POST             registering a user            /API/v1/auth/users/signup
@@ -59,7 +64,7 @@ MY DIARY'S ENDPOINTS
 
 		-PUT             Updating a specific entry      /API/v1/entries/<int:entryid>
 
-  When creating a user
+-  When creating a user
 
 			     {
 				"firstname":"dumba",
@@ -69,7 +74,7 @@ MY DIARY'S ENDPOINTS
 				"gender":"male"
 						}
 
-when creating and updating an entry 
+-  when creating and updating an entry 
 
                          { "title":"This is it",
 		          "body":"WHY u gotta go"
@@ -79,5 +84,5 @@ Dumba Kenneth
 						 
 **Acknowledgments**
 
-Desire to make a difference in allowing people access their diary on an device at any time
+Desire to make a difference in allowing people access a diary on an device at any time
  
