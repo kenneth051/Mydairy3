@@ -111,15 +111,12 @@ class Diary(Database):
                         response = jsonify({"message": "update successful"})
                         response.status_code = 200
                     else:
-                        response = jsonify({"message": """"You are sending data you
-                                            have used before, cannot update,
-                                            change title or body"""})
+                        response = jsonify({"message": "You are sending duplicate data"})
                         response.status_code = 409
                 else:
-                    response = jsonify({"message": """You can only update an entry you have created the same day"""})
+                    response = jsonify({"message": "You can only update an entry you have created the same day"})
                     response.status_code = 409
         else:
-            response = jsonify({"message": """The URL is invalid ,
-                                wrong ID given"""})
+            response = jsonify({"message": "The URL is invalid"})
             response.status_code = 404
         return response
