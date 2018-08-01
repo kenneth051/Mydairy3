@@ -2,23 +2,25 @@
 import re
 
 def validate_userfields(data):
+    """method to update other data fields"""
     result = ""
-    lst =list(data)
+    lst = list(data)
     for char in lst:
-        if(not re.search("[a-zA-Z]", char)):
+        if not re.search("[a-zA-Z]", char):
             result = False
             break
         else:
-            result= True
+            result = True
     return result
 
 def validate_username(data):
+    """method to validate username"""
     result = ""
-    lst =list(data)
+    lst = list(data)
     for char in lst:
-        if(not re.search("[a-zA-Z0-9]", char)):
+        if not re.search("[a-zA-Z0-9]", char):
             result = False
             break
         else:
-            result= True
-    return result    
+            result = True
+    return result
