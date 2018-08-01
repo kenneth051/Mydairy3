@@ -1,11 +1,13 @@
+"""flask initializing file"""
 from flask import Flask, jsonify
 from flask_jwt_extended import JWTManager
 APP = Flask(__name__)
-APP.config['JWT_SECRET_KEY'] = 'super-secret'  # Change this!
+APP.config['JWT_SECRET_KEY'] = 'super-secret'
 jwt = JWTManager(APP)
 
-from app.api.api import routes
-APP.register_blueprint(routes)
+from app.api.api import ROUTES
+APP.register_blueprint(ROUTES)
+
 
 @APP.errorhandler(404)
 def page_not_found(e):
