@@ -9,22 +9,25 @@ from app.database import Database
 class TestBase(unittest.TestCase):
     """class to test our api"""
     create_user = json.dumps(dict(firstname="joy", lastname="williams",
-                                  username="home",
+                                  username="home", email="ken@gmail.com",
                                   password="1234567890", gender="female"))
     duplicate_user = json.dumps(dict(firstname="joy", lastname="williams",
-                                     username="joy",
+                                     username="joy", email="ken@ken.com",
                                      password="1234567890", gender="female"))
     invaliduser = json.dumps(dict(firstname="joy", lastname="williams",
-                                  username="***",
+                                  username="***", email="ken@ken.com",
                                   password="1234567890", gender="female"))
+    invalid_email = json.dumps(dict(firstname="joy", lastname="williams",
+                                    username="home", email="ken.com",
+                                    password="1234567890", gender="female"))
     invaliduser1 = json.dumps(dict(firstname="****", lastname="   ",
-                                   username="andela",
+                                   username="andela", email="ken@ken.com",
                                    password="1234567890", gender="female"))
     invalidpassword = json.dumps(dict(firstname="uuuuu", lastname="yyyyyyy",
-                                      username="andela",
+                                      username="andela", email="ken@ken.com",
                                       password="    ", gender="female"))
     passwordlength = json.dumps(dict(firstname="uuuuu", lastname="yyyyyyy",
-                                     username="andela",
+                                     username="andela", email="ken@ken.com",
                                      password="uuuuu", gender="female"))
     logindata = json.dumps(dict(username="joy", password="12345678"))
     login_validation = json.dumps(dict(username="******", password="12345678"))

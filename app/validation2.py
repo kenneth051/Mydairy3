@@ -20,7 +20,7 @@ class Validate2():
         return result
 
     @classmethod
-    def validate_user(cls, username, firstname, lastname, password, gender):
+    def validate_user(cls, username, firstname, lastname, email, password, gender):
         """method to validzte user regiteration"""
         response = ""
         password_length = len(password)
@@ -35,6 +35,8 @@ class Validate2():
             response = "Invalid firstname or lastname, use alphabets"
         elif gender not in ("male", "female"):
             response = "Invalid gender, should be male or female"
+        elif not re.search("^[a-zA-Z0-9_.+-]+@[a-zA-Z]+\\.[a-zA-Z]+$", email):
+            response = "Invalid email address"    
         elif not re.search("^{\\s|\\S}*{\\S}+{\\s|\\S}*$", password):
             response = "invalid password data"
         elif password_length <= 8:
