@@ -21,7 +21,7 @@ class Validate2():
 
     @classmethod
     def validate_user(cls, username, firstname, lastname, password, gender):
-        """method to validzte user regiteration"""
+        """method to validate user regiteration"""
         response = ""
         password_length = len(password)
         info = validate_username(username)

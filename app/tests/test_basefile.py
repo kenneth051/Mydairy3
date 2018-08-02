@@ -9,7 +9,7 @@ from app.database import Database
 class TestBase(unittest.TestCase):
     """class to test our api"""
     create_user = json.dumps(dict(firstname="joy", lastname="williams",
-                                  username="williams",
+                                  username="home",
                                   password="1234567890", gender="female"))
     duplicate_user = json.dumps(dict(firstname="joy", lastname="williams",
                                      username="joy",
@@ -28,7 +28,7 @@ class TestBase(unittest.TestCase):
                                      password="uuuuu", gender="female"))
     logindata = json.dumps(dict(username="joy", password="12345678"))
     login_validation = json.dumps(dict(username="******", password="12345678"))
-    create_entry = json.dumps(dict(title="kampala", body="this is my body",
+    create_entry = json.dumps(dict(title="entry creation", body="this is created",
                                    user_id=1))
     duplicate_entry = json.dumps(dict(title="Testing", body="testing data",
                                       user_id=1))
@@ -49,8 +49,8 @@ class TestBase(unittest.TestCase):
                 self.access_token)}
 
     def tearDown(self):
-        users_table = ("""DROP TABLE IF EXISTS users;""")
-        entries_table = ("""DROP TABLE IF EXISTS "entries";""")
+        users_table = ("""DROP TABLE IF EXISTS users CASCADE;""")
+        entries_table = ("""DROP TABLE IF EXISTS "entries CASCADE";""")
         con = Database.testing_db_teardown()
         cur = con.cursor()
         cur.execute(users_table)

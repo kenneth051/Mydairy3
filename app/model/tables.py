@@ -10,4 +10,4 @@ DAIRYTABLE = """create table IF NOT EXISTS Entries
              (id serial primary key not null,title 
               text not null,body text not null, 
               entry_time text not null,entry_date text not null,
-                    updated text not null,user_id int)"""
+                    updated text not null,user_id int references Users(id))"""

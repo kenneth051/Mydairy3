@@ -1,4 +1,5 @@
 """validation page"""
+# pylint: disable=R0913
 
 
 class Validate():
