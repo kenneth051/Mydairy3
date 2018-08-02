@@ -27,7 +27,7 @@ def register():
             response.status_code = 400
             return response
     except:
-        return jsonify({"result": "Missing input field"})
+        return jsonify({"Error": "Missing or invalid input field"})
 
 
 @ROUTES.route('/API/v1/auth/users/login', methods=['POST'])
@@ -46,7 +46,7 @@ def login():
             response.status_code = 400
             return response
     except:
-        return jsonify({"message": "Check data Fields"})
+        return jsonify({"Error": "Missing or invalid input field"})
 
 
 @ROUTES.route('/API/v1/entries', methods=['POST'])
@@ -69,7 +69,7 @@ def create_entry():
             response.status_code = 400
             return response
     except:
-        response = jsonify({"message": "DATA FIELDS ISSUE"})
+        response = jsonify({"Error": "Missing or invalid input field"})
         response.status_code = 400
         return response
 
@@ -116,6 +116,6 @@ def update_entry(entryid):
             response.status_code = 400
             return response
     except:
-        response = jsonify({"message": "DATA FIELDS ISSUE"})
+        response = jsonify({"Error": "Missing or invalid input field"})
         response.status_code = 400
         return response
