@@ -35,8 +35,7 @@ class UserData(Database):
                 response.status_code = 201
             return response
         except:
-            response = jsonify({"message": """user cannot be registered,
-                                contact ADMIN"""})
+            response = jsonify({"message": "user cannot be registered"})
             response.status_code = 400
             return response
 
@@ -58,11 +57,10 @@ class UserData(Database):
                                                    expires_delta=expires)
                 response = jsonify({"message": "You are logged in",
                                     "token": access_token})
-                response.status_code = 201
+                response.status_code = 200
             else:
-                response = jsonify({"message": """Invalid username
-                                    or password"""})
+                response = jsonify({"message": "Invalid username or password"})
                 response.status_code = 403
             return response
         except:
-            return "login failure contact ADMIN"
+            return jsonify({"message": "login failure contact ADMIN"})

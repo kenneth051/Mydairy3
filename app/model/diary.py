@@ -37,8 +37,7 @@ class Diary(Database):
                 response.status_code = 201
                 return response
         except:
-            response = jsonify({"message": """Entry cannot be
-                                created, contact ADMIN"""})
+            response = jsonify({"message": "Entry cannot be created"})
             response.status_code = 400
             return response
 

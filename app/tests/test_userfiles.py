@@ -68,7 +68,7 @@ class UserTesting(TestBase):
         tester = self.app.test_client(self)
         res = tester.post('/API/v1/auth/users/login', data=TestBase.logindata,
                           content_type="application/json")
-        self.assertEqual(res.status_code, 201)
+        self.assertEqual(res.status_code, 200)
         print(res.data)
 
     def test_login_validation(self):
