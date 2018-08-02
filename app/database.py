@@ -25,8 +25,9 @@ class Database:
             cur.execute(tables.USERTABLE, )
             self.con.commit()
             today = str(date.today())
-            cur.execute("""INSERT INTO Users(firstname, lastname, username, email, password, gender)
-            VALUES ('Dumba', 'kenneth', 'joy', 'ken@yahoo.com', '12345678', 'male')""")
+            cur.execute("""INSERT INTO Users(firstname, lastname, username, email,
+            password, gender)VALUES ('Dumba', 'kenneth', 'joy',
+            'ken@yahoo.com', '12345678', 'male')""")
             self.con.commit()
             cur = self.con.cursor()
             cur.execute(tables.DAIRYTABLE, )

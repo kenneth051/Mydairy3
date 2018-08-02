@@ -19,7 +19,7 @@ class UserData(Database):
             response = ""
             cur = self.con.cursor()
             cur.execute("""SELECT username, email FROM Users where
-                        username =%s or email = %s""", (username1, email1 ))
+                        username =%s or email = %s""", (username1, email1))
             self.con.commit()
             result = cur.rowcount
             if result > 0:

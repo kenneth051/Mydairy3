@@ -4,6 +4,11 @@
 
 <a href="https://codeclimate.com/github/kenneth051/Mydairy3/maintainability"><img src="https://api.codeclimate.com/v1/badges/71e2fe5f21796ab00102/maintainability" /></a>
 
+**LINT TO HEROKU  HOSTED API**
+
+https://cryptic-basin-28780.herokuapp.com
+
+
 # PROJECT TITLE
 
 **Mydairy3**
@@ -76,6 +81,7 @@ To run tests
 				"firstname":"dumba",
 				"lastname":"kenneth",
 				"username":"kenneth051",
+				"email":"ken@yahoo.com",
 				"password":"123456",
 				"gender":"male"
 						}
