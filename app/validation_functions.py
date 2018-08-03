@@ -6,7 +6,7 @@ def validate_userfields(data):
     result = ""
     lst = list(data)
     for char in lst:
-        if not re.search("[a-zA-Z]", char):
+        if not re.search("^[a-zA-Z]", char):
             result = False
             break
         else:
@@ -20,7 +20,12 @@ def validate_username(data):
     for char in lst:
         if not re.search("[a-zA-Z0-9]", char):
             result = False
-            break
+            break    
         else:
             result = True
     return result
+
+
+
+firstname2 = validate_userfields("")
+print(firstname2)    

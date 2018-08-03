@@ -1,6 +1,6 @@
 """validation class with regular expressions"""
 import re
-from app.validation3 import validate_userfields, validate_username
+from app.validation_functions import validate_userfields, validate_username
 
 
 class Validate2():
@@ -18,21 +18,40 @@ class Validate2():
         else:
             result = True
         return result
+    @classmethod
+    def validate_names(cls,name):
+        result =""
+        if not re.search("^{\\s|\\S}*{\\S}+{\\s|\\S}*$", name):
+            result = False
+        else:
+            result = True
+        return result                          
 
     @classmethod
     def validate_user(cls, username, firstname, lastname, email, password, gender):
-        """method to validzte user regiteration"""
+        """method to validate user regiteration"""
         response = ""
         password_length = len(password)
-        info = validate_username(username)
-        firstname2 = validate_userfields(firstname)
-        lastname2 = validate_userfields(lastname)
+        username1 = validate_username(username)
+        username2 = Validate2.validate_names(username)
+        firstname1 = validate_userfields(firstname)
+        lastname1 = validate_userfields(lastname)
+        firstname2 = Validate2.validate_names(firstname)
+        lastname2 = Validate2.validate_names(lastname)
         gender = str(gender)
         gender = gender.lower()
-        if info is False:
-            response = "Invalid username field data,user alphanumeric"
-        elif firstname2 is False or lastname2 is False:
-            response = "Invalid firstname or lastname, use alphabets"
+        if username2 is False:
+            response = "Username cannot be empty"
+        elif username1 is False:
+            response = "username can only have alphanumeric characters"
+        elif firstname2 is False:
+            response = "Firstname cannot be empty"
+        elif lastname2 is False:
+            response = "lastname cannot be empty"
+        elif firstname1 is False:
+            response = "Invalid firstname use alphabets only"
+        elif lastname1 is False:
+            response = "Invalid lastname, use aphabets only"    
         elif gender not in ("male", "female"):
             response = "Invalid gender, should be male or female"
         elif not re.search("^[a-zA-Z0-9_.+-]+@[a-zA-Z]+\\.[a-zA-Z]+$", email):
@@ -51,7 +70,7 @@ class Validate2():
         response = ""
         info = validate_username(username)
         if info is False:
-            response = "Invalid username field data,user alphanumeric"
+            response = "username can only have alphanumeric characters"
         elif not re.search("^{\\s|\\S}*{\\S}+{\\s|\\S}*$", password):
             response = "invalid password data"
         else:
