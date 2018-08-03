@@ -1,0 +1,189 @@
+FORMAT: 1A
+HOST: https://cryptic-basin-28780.herokuapp.com/
+
+# MyDiary
+
+MyDiary is a simple website that allows people to register,login in and create entries
+about themselves that are saved in a adatabase for future refrence
+
+## USER REGISTERATION [/API/v1/auth/users/signup]
+### Register a new user [POST]
+
+For a new user of the diary, he or she has to create an account if the want to use the
+website. the account created nables one to start creating entries once they log 
+in.It take json data
+
++ Request (application/json)
+
+        {
+            "firstname":"joedoe",
+            "lastname" :"winnie",
+            "username" : "winnie051",
+            "email":"ken@ken.com",
+            "password" :"123456789",
+            "gender" :"female"
+        }   
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /API/v1/auth/users/signup
+
+    + Body
+
+            {
+            "message": "registeration successfuly"
+            }
+## USER LOGIN [/API/v1/auth/users/login]
+### Login [POST]
+
+Once a user has finished registering, they would have to log in. This also takes 
+json data
+
++ Request (application/json)
+
+        {
+            "username" : "winnie051",
+            "password" :"123456789"
+        }   
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /API/v1/auth/users/login
+
+    + Body
+
+            {
+            "message": "You are logged in",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MzMyMzAwMTIsIm5iZiI6MTUzMzIzMDAxMiwianRpIjoiOGZmYzIzNzItNTEyMi00ZTA0LWFkNWMtOTczMDkzODk0ZjAxIiwiZXhwIjoxNTMzMzE2NDEyLCJpZGVudGl0eSI6eyJ1c2VyX2lkIjozLCJmaXJzdG5hbWUiOiJqb3kiLCJsYXN0bmFtZSI6IndpbGxpYW1zIiwidXNlcm5hbWUiOiJqb3kyMiJ9LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.tDcZOC-fYHzu8pEzfpwdHi99iQ0rrV-SS-pzZ3AghXU"
+            }
+## CREATING AN ENTRY AND GETTING ALL ENTRIES [/API/v1/entries]
+
+### Create an entry [POST]
+
+A registered user creates an entry.This takes JSON data
+    + Headers
+    
+        Authorization: Bearer token
+        
++ Request (application/json)
+
+            {
+            "title":"acting",
+            "body":"This is bootcamp"
+            }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /API/v1/entries
+
+    + Body
+
+            {
+            "message": "Entry created successfully"
+            }
+### Get all entries [GET]
+
+A logged in user get all entries he or he has ever created.This returns json data
+    
+    + Headers
+    
+            Authorization: Bearer token
+            
+    + Headers
+
+            Location: /API/v1/entries
+
++ Response 200 (application/json)
+
+
+        {
+        "result": [
+        {
+            "body": "glory in the house",
+            "entry_date": "2018-08-01",
+            "entry_time": "18:10:15.430784",
+            "id": 2,
+            "title": "This is war",
+            "updated": "---",
+            "user_id": 1
+        },
+        {
+            "body": "This is bootcamp",
+            "entry_date": "2018-08-01",
+            "entry_time": "18:11:05.947673",
+            "id": 3,
+            "title": "Andela",
+            "updated": "---",
+            "user_id": 1
+        },
+        {
+            "body": "This is bootcamp111",
+            "entry_date": "2018-08-02",
+            "entry_time": "10:25:57.206757",
+            "id": 4,
+            "title": "acting111",
+            "updated": "---",
+            "user_id": 1
+        }
+        ]
+        }
+## GETTING A SINGLE ENTRY AND UPDATING  [/API/v1/entries/1]
+### Get single entry [GET]
+
+A logged in user can get a single entry's content,Data is returned in json format
+    
+    + Headers
+    
+            Authorization: Bearer token
+            
+    + Headers
+
+            Location: /API/v1/entries/1
+
++ Response 200 (application/json)
+
+        {
+        "result": [
+        {
+            "body": "this is going to update",
+            "entry_date": "2018-08-01",
+            "entry_time": "18:07:07.037008",
+            "id": 1,
+            "title": "updated",
+            "updated": "Wed Aug  1 22:13:11 2018",
+            "user_id": 1
+        }
+        ]
+        }
+
+### update an entry [PUT]
+
+A logged in user can modify an entry's content.A response returned in JSON
+    
+    + Headers
+    
+            Authorization: Bearer token
+            
+    + Headers
+
+            Location: /API/v1/entries/1
+
+    + Request (application/json)
+
+            {
+            "title":"acting",
+            "body":"This is bootcamp"
+            }
+            
+
++ Response 200 (application/json)
+
+        {
+        "message": "update successful"
+        }

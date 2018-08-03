@@ -76,6 +76,7 @@ To run tests
 				"firstname":"dumba",
 				"lastname":"kenneth",
 				"username":"kenneth051",
+				"email":"ken@yahoo.com",
 				"password":"123456",
 				"gender":"male"
 						}
