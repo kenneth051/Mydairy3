@@ -38,7 +38,7 @@ pip: A python package used to install modules specified in the requirements text
 
      git clone https://github.com/kenneth051/Mydairy3.git 
 
--  Install the dependencies
+-  Install the dependencies needed
 
     
          pip install -r requirements.txt
