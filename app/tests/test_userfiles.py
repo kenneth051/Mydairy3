@@ -41,7 +41,7 @@ class UserTesting(TestBase):
                                data=TestBase.invaliduser,
                                content_type="application/json")
         self.assertEqual(response.status_code, 400)
-        self.assertIn(b"Invalid username field data,user alphanumeric",
+        self.assertIn(b"username can only have alphanumeric characters",
                       response.data)
 
     def test__userdata_validation(self):
@@ -51,7 +51,7 @@ class UserTesting(TestBase):
                                data=TestBase.invaliduser1,
                                content_type="application/json")
         self.assertEqual(response.status_code, 400)
-        self.assertIn(b"Invalid firstname or lastname, use alphabets",
+        self.assertIn(b"lastname cannot be empty",
                       response.data)
 
     def test_password_validation(self):
