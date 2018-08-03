@@ -12,23 +12,23 @@ class UserData(Database):
         """user class constructor"""
         Database.__init__(self)
 
-    def create_user(self, firstname1, lastname1, username1,
+    def create_user(self, firstname1, lastname1, username1, email1,
                     password1, gender1):
         """method for creating a user"""
         try:
             response = ""
             cur = self.con.cursor()
-            cur.execute("""SELECT username FROM Users where
-                        username =%s """, (username1, ))
+            cur.execute("""SELECT username, email FROM Users where
+                        username =%s or email = %s""", (username1, email1 ))
             self.con.commit()
             result = cur.rowcount
             if result > 0:
-                response = jsonify({"message": "username is already used"})
+                response = jsonify({"message": "username or email is already used"})
                 response.status_code = 409
             else:
-                cur.execute("""INSERT INTO Users(firstname, lastname, username,
-                            password,gender)VALUES (%s, %s, %s, %s, %s)""",
-                            (firstname1, lastname1, username1, password1,
+                cur.execute("""INSERT INTO Users(firstname, lastname, username,email,
+                            password,gender)VALUES (%s, %s, %s, %s, %s, %s)""",
+                            (firstname1, lastname1, username1, email1, password1,
                              gender1))
                 self.con.commit()
                 response = jsonify({"message": "registeration successfuly"})

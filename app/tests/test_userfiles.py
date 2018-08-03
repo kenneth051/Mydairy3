@@ -21,8 +21,18 @@ class UserTesting(TestBase):
                                data=TestBase.duplicate_user,
                                content_type="application/json")
         self.assertEqual(response.status_code, 409)
-        self.assertIn(b"username is already used",
+        self.assertIn(b"username or email is already used",
                       response.data)
+            
+    def test_invalid_email(self):
+        """test method to check duplication"""
+        tester = self.app.test_client(self)
+        response = tester.post('/API/v1/auth/user/signup',
+                               data=TestBase.invalid_email,
+                               content_type="application/json")
+        self.assertEqual(response.status_code, 400)
+        self.assertIn(b"Invalid email address",
+                      response.data)                  
 
     def test_username_validation(self):
         """test method for checking username validation"""

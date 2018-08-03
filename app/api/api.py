@@ -14,12 +14,13 @@ def register():
     try:
         data = request.get_json()
         info = Validate2.validate_user(data["username"], data["firstname"],
-                                       data["lastname"], data["password"],
+                                       data["lastname"], data["email"],
+                                       data["password"],
                                        data["gender"])
         if info is True:
             obj = UserData()
             result = obj.create_user(data["firstname"], data["lastname"],
-                                     data["username"], data["password"],
+                                     data["username"], data["email"], data["password"],
                                      data["gender"])
             return result
         else:

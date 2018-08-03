@@ -3,7 +3,7 @@
 USERTABLE = """create table IF NOT EXISTS Users (id serial
             primary key not null,firstname text not null,
                     lastname text not null, username text
-                    not null,password text not null,
+                    not null,email text not null,password text not null,
                     gender text not null)"""
 
 DAIRYTABLE = """create table IF NOT EXISTS Entries
