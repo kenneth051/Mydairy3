@@ -31,7 +31,7 @@ class Diary(Database):
                             entry_time,updated,user_id)VALUES
                             (%s,%s,%s,%s,%s,%s)""",
                             (title1, body1, today, current_time,
-                             "---", user_id1))
+                             today, user_id1))
                 self.con.commit()
                 response = jsonify({"message": "Entry created successfully"})
                 response.status_code = 201
