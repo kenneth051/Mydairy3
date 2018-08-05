@@ -18,8 +18,8 @@ class Diary(Database):
             today = str(date.today())
             current_time = str(datetime.time(datetime.now()))
             cur = self.con.cursor()
-            cur.execute("""SELECT * FROM Entries where title = %s or body = %s and
-                        user_id = %s""", (title1, body1, user_id1))
+            cur.execute("""SELECT * FROM Entries where title = %s and user_id = %s or body = %s and
+                        user_id = %s""", (title1, user_id1, body1, user_id1))
             self.con.commit()
             result = cur.rowcount
             if result > 0:
