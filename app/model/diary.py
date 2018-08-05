@@ -1,7 +1,7 @@
 """Diary class"""
 from datetime import date, datetime
 from flask import jsonify
-from app.validation1 import Validate
+from app.validate_update_duplicate import Validate
 from app.database import Database
 
 

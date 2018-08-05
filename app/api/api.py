@@ -3,7 +3,7 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.model.diary import Diary
 from app.model.users import UserData
-from app.validation2 import Validate2
+from app.validation_main import Validate2
 
 ROUTES = Blueprint('routes', __name__)
 
