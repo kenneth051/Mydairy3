@@ -62,4 +62,13 @@ class EntryTesting(TestBase):
         response = tester.put('/API/v1/entries/1', data=TestBase.update_entry,
                               headers=self.access_header,
                               content_type="application/json")
-        self.assertEqual(response.status_code, 200) 
+        self.assertEqual(response.status_code, 200)
+
+    def test_to_update_invalid_entry(self):
+        """test to get an entry with invalid id"""
+        tester = self.app.test_client(self)
+        response = tester.put('/API/v1/entries/11111', data=TestBase.update_entry,
+                              headers=self.access_header,
+                              content_type="application/json")
+        self.assertEqual(response.status_code, 404)
+        self.assertIn(b"The Page cannot be found", response.data)    
