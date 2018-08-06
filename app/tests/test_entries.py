@@ -23,6 +23,15 @@ class EntryTesting(TestBase):
         self.assertEqual(res.status_code, 409)
         self.assertIn(b"Duplicate Entry data",
                       res.data)
+     
+    def test_create_bad_entry(self):
+        """test to create an entry"""
+        tester = self.app.test_client(self)
+        res = tester.post('/API/v1/entries', data=TestBase.bad_entry,
+                          headers=self.access_header,
+                          content_type='application/json')
+        self.assertEqual(res.status_code, 400)
+        self.assertIn(b"Should have a TITLE field taking in a string and BODY field taking in a string", res.data)
 
     def test_to_get_all_entries(self):
         """test to get all entries"""
@@ -71,4 +80,13 @@ class EntryTesting(TestBase):
                               headers=self.access_header,
                               content_type="application/json")
         self.assertEqual(response.status_code, 404)
-        self.assertIn(b"The Page cannot be found", response.data)    
+        self.assertIn(b"The Page cannot be found", response.data)
+
+    def test_update_bad_entry(self):
+        """test to create an entry"""
+        tester = self.app.test_client(self)
+        res = tester.put('/API/v1/entries/1', data=TestBase.bad_entry,
+                         headers=self.access_header,
+                         content_type='application/json')
+        self.assertEqual(res.status_code, 400)
+        self.assertIn(b"Should have a TITLE field taking in a string and BODY field taking in a string", res.data)           
