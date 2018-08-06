@@ -28,7 +28,9 @@ def register():
             response.status_code = 400
             return response
     except:
-        return jsonify({"Error": "Missing or invalid input field"})
+        response = jsonify({"Error": "Should have a username,firstname,lastname,email,password,gender fields all taking in a string"})
+        response.status_code = 400
+        return response
 
 
 @ROUTES.route('/API/v1/auth/users/login', methods=['POST'])
@@ -47,7 +49,9 @@ def login():
             response.status_code = 400
             return response
     except:
-        return jsonify({"Error": "Missing or invalid input field"})
+        response = jsonify({"Error": "Should have a username field taking in a string and password field taking in a string"})
+        response.status_code = 400
+        return response
 
 
 @ROUTES.route('/API/v1/entries', methods=['POST'])
@@ -70,7 +74,7 @@ def create_entry():
             response.status_code = 400
             return response
     except:
-        response = jsonify({"Error": "Missing or invalid input field"})
+        response = jsonify({"Error": "Should have a TITLE field taking in a string and BODY field taking in a string"})
         response.status_code = 400
         return response
 
@@ -117,6 +121,6 @@ def update_entry(entryid):
             response.status_code = 400
             return response
     except:
-        response = jsonify({"Error": "Missing or invalid input field"})
+        response = jsonify({"Error": "Should have a TITLE field taking in a string and BODY field taking in a string"})
         response.status_code = 400
         return response
