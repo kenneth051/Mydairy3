@@ -33,6 +33,7 @@ class TestBase(unittest.TestCase):
     login_validation = json.dumps(dict(username="******", password="12345678"))
     create_entry = json.dumps(dict(title="kampala", body="this is my body",
                                    user_id=1))
+    bad_entry = json.dumps(dict(title="kampala"))                               
     duplicate_entry = json.dumps(dict(title="Testing", body="testing data",
                                       user_id=1))
     update_entry = json.dumps(dict(title="war", body="We will be fine",
