@@ -45,7 +45,7 @@ class EntryTesting(TestBase):
                               headers=self.access_header,
                               content_type="application/json")
         self.assertEqual(response.status_code, 404)
-        self.assertIn(b"The URL is invalid", response.data)
+        self.assertIn(b"The Page cannot be found", response.data)
 
     def test_duplicate_update(self):
         """test to update an entry using duplicate data"""
@@ -62,4 +62,4 @@ class EntryTesting(TestBase):
         response = tester.put('/API/v1/entries/1', data=TestBase.update_entry,
                               headers=self.access_header,
                               content_type="application/json")
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200) 

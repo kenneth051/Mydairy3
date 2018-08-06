@@ -80,7 +80,7 @@ class Diary(Database):
                 lst.append(data)
             return jsonify({"result": lst})
         else:
-            response = jsonify({"message": "The URL is invalid"})
+            response = jsonify({"message": "The Page cannot be found"})
             response.status_code = 404
             return response
 
@@ -116,6 +116,6 @@ class Diary(Database):
                     response = jsonify({"message": "You can only update an entry you have created the same day"})
                     response.status_code = 409
         else:
-            response = jsonify({"message": "The URL is invalid"})
+            response = jsonify({"message": "The Page cannot be found"})
             response.status_code = 404
         return response
