@@ -65,7 +65,7 @@ class EntryTesting(TestBase):
         self.assertEqual(response.status_code, 200)
 
     def test_to_update_invalid_entry(self):
-        """test to get an entry with invalid id"""
+        """test to update an entry with invalid id"""
         tester = self.app.test_client(self)
         response = tester.put('/API/v1/entries/11111', data=TestBase.update_entry,
                               headers=self.access_header,
