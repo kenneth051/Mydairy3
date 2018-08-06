@@ -66,7 +66,7 @@ def create_entry():
                                       data["user_id"])
             return info
         else:
-            response = jsonify({"message": "Invalid data in body or title"})
+            response = jsonify({"message": result})
             response.status_code = 400
             return response
     except:
@@ -113,7 +113,7 @@ def update_entry(entryid):
                                      updating_data["body"])
             return info
         else:
-            response = jsonify({"message": "Invalid data in body or title"})
+            response = jsonify({"message": result})
             response.status_code = 400
             return response
     except:
