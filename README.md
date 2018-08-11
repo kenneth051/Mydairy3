@@ -67,7 +67,7 @@ To run tests
 **MY DIARY'S ENDPOINTS**
 
 		METHOD             ACTIVITY                     ENDPOINT
-		-POST             registering a user            /API/v1/auth/users/signup
+		-POST             registering a user            /API/v1/auth/user/signup
 		
 		-POST             logging in                    /API/v1/auth/users/login
 
