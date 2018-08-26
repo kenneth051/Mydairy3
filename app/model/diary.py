@@ -1,7 +1,7 @@
 """Diary class"""
 from datetime import date, datetime
 from flask import jsonify
-from app.validation1 import Validate
+from app.validate_update_duplicate import Validate
 from app.database import Database
 
 
@@ -18,8 +18,8 @@ class Diary(Database):
             today = str(date.today())
             current_time = str(datetime.time(datetime.now()))
             cur = self.con.cursor()
-            cur.execute("""SELECT * FROM Entries where title = %s or body = %s and
-                        user_id = %s""", (title1, body1, user_id1))
+            cur.execute("""SELECT * FROM Entries where title = %s and user_id = %s or body = %s and
+                        user_id = %s""", (title1, user_id1, body1, user_id1))
             self.con.commit()
             result = cur.rowcount
             if result > 0:
@@ -31,7 +31,7 @@ class Diary(Database):
                             entry_time,updated,user_id)VALUES
                             (%s,%s,%s,%s,%s,%s)""",
                             (title1, body1, today, current_time,
-                             "---", user_id1))
+                             today, user_id1))
                 self.con.commit()
                 response = jsonify({"message": "Entry created successfully"})
                 response.status_code = 201
@@ -80,7 +80,7 @@ class Diary(Database):
                 lst.append(data)
             return jsonify({"result": lst})
         else:
-            response = jsonify({"message": "The URL is invalid"})
+            response = jsonify({"message": "The Page cannot be found"})
             response.status_code = 404
             return response
 
@@ -116,6 +116,6 @@ class Diary(Database):
                     response = jsonify({"message": "You can only update an entry you have created the same day"})
                     response.status_code = 409
         else:
-            response = jsonify({"message": "The URL is invalid"})
+            response = jsonify({"message": "The Page cannot be found"})
             response.status_code = 404
         return response

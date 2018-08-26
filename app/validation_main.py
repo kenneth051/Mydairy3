@@ -12,9 +12,13 @@ class Validate2():
     def validate_empty(self):
         """method to validate my input """
         result = ""
-        if(not re.search("[a-zA-Z0-9]", self.title) or not
-           re.search("^{\\s|\\S}*{\\S}+{\\s|\\S}*$", self.body)):
-            result = False
+        title_empty = Validate2.validate_names(self.title)
+        if title_empty is False:
+            result = "title cannot be empty"
+        elif not re.search("[a-zA-Z0-9]", self.title):
+            result = "title can only have alphanumeric characters"
+        elif not re.search("^{\\s|\\S}*{\\S}+{\\s|\\S}*$", self.body):
+            result = "body cannot be empty"
         else:
             result = True
         return result

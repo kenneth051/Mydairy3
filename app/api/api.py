@@ -3,7 +3,7 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.model.diary import Diary
 from app.model.users import UserData
-from app.validation2 import Validate2
+from app.validation_main import Validate2
 
 ROUTES = Blueprint('routes', __name__)
 
@@ -28,7 +28,9 @@ def register():
             response.status_code = 400
             return response
     except:
-        return jsonify({"Error": "Missing or invalid input field"})
+        response = jsonify({"Error": "Should have a username,firstname,lastname,email,password,gender fields all taking in a string"})
+        response.status_code = 400
+        return response
 
 
 @ROUTES.route('/API/v1/auth/users/login', methods=['POST'])
@@ -47,7 +49,9 @@ def login():
             response.status_code = 400
             return response
     except:
-        return jsonify({"Error": "Missing or invalid input field"})
+        response = jsonify({"Error": "Should have a username field taking in a string and password field taking in a string"})
+        response.status_code = 400
+        return response
 
 
 @ROUTES.route('/API/v1/entries', methods=['POST'])
@@ -66,11 +70,11 @@ def create_entry():
                                       data["user_id"])
             return info
         else:
-            response = jsonify({"message": "Invalid data in body or title"})
+            response = jsonify({"message": result})
             response.status_code = 400
             return response
     except:
-        response = jsonify({"Error": "Missing or invalid input field"})
+        response = jsonify({"Error": "Should have a TITLE field taking in a string and BODY field taking in a string"})
         response.status_code = 400
         return response
 
@@ -113,10 +117,10 @@ def update_entry(entryid):
                                      updating_data["body"])
             return info
         else:
-            response = jsonify({"message": "Invalid data in body or title"})
+            response = jsonify({"message": result})
             response.status_code = 400
             return response
     except:
-        response = jsonify({"Error": "Missing or invalid input field"})
+        response = jsonify({"Error": "Should have a TITLE field taking in a string and BODY field taking in a string"})
         response.status_code = 400
         return response
