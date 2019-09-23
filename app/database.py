@@ -3,6 +3,8 @@ from datetime import date
 import psycopg2
 from app import APP
 from app.model import tables
+import os
+
 
 
 class Database:
@@ -10,8 +12,7 @@ class Database:
 
     def __init__(self):
         if not APP.config['TESTING']:
-            self.con = psycopg2.connect(host="localhost", user="postgres",
-                                        password="chaos", dbname="diary")
+            self.con = psycopg2.connect(os.getenv("DATABASE_URI"))
             cur = self.con.cursor()
             cur.execute(tables.USERTABLE,)
             self.con.commit()

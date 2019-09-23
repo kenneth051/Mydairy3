@@ -1,0 +1,27 @@
+version: '2.1'
+services:
+    database:
+      restart: always
+      image: postgres:10.1
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=chaos
+        - POSTGRES_DB=diary
+      ports:
+        - '5434:5432'
+      expose:
+        - '5434'
+    app:
+      restart: always
+      build:
+        context: ./
+        dockerfile: dockerfile
+      ports:
+        - '5000:5000'
+      volumes:
+        - .:/diary3
+      environment:
+        DATABASE_URI: postgresql://postgres:chaos@database:5432/diary
+      depends_on:
+        - database
+      entrypoint: ["/bin/bash","-c","./start.sh"]
